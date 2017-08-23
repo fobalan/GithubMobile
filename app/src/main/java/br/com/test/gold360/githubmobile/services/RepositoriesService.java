@@ -18,7 +18,7 @@ public interface RepositoriesService {
     })
 
     @GET("search/repositories")
-    Call<RepositorySync> get(@Query("q") String paramQ,
+    Call<RepositorySync> getRepositories(@Query("q") String paramQ,
                              @Query("sort") String sort,
                              @Query("page") int page);
 }

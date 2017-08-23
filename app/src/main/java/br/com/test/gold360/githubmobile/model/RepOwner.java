@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -14,7 +15,7 @@ import java.net.URL;
  * Created by Flavio on 19/08/2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RepOwner {
+public class RepOwner implements Serializable {
 
     @JsonProperty("login")
     private String name;

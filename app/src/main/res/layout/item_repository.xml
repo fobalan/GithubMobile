@@ -29,7 +29,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/avatarImageView"
+        android:id="@+id/avatarRepositoryCircleImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
@@ -52,7 +52,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/ownerConstraint"
         app:layout_constraintRight_toRightOf="@+id/ownerConstraint"
-        app:layout_constraintTop_toBottomOf="@+id/avatarImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/avatarRepositoryCircleImageView" />
 
     <TextView
         android:id="@+id/ownerFullNameTextView"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ownerNameTextView" />
 
     <TextView
-        android:id="@+id/nameTextView"
+        android:id="@+id/nameRepositoryTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -85,19 +85,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descriptionTextView"
+        android:id="@+id/descriptionRepositoryTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="Descrição"
-        android:textSize="16sp"
         android:ellipsize="end"
         android:maxLines="3"
+        android:text="Descrição"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/ownerConstraint"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/nameRepositoryTextView" />
 
     <ImageView
         android:id="@+id/forksImageView"

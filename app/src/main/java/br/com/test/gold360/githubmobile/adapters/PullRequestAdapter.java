@@ -13,49 +13,50 @@ import com.squareup.picasso.Target;
 
 import java.util.List;
 
+import br.com.test.gold360.githubmobile.PullRequestsActivity;
 import br.com.test.gold360.githubmobile.R;
+import br.com.test.gold360.githubmobile.holders.PullRequestHolder;
 import br.com.test.gold360.githubmobile.holders.RepositoryHolder;
 import br.com.test.gold360.githubmobile.listener.RecyclerViewListener;
+import br.com.test.gold360.githubmobile.model.PullRequest;
 import br.com.test.gold360.githubmobile.model.Repository;
 
 /**
- * Created by Flavio on 20/08/2017.
+ * Created by Flavio on 22/08/2017.
  */
 
-public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryHolder> {
+public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestHolder> {
     private LayoutInflater layoutInflater;
-    private List<Repository> repositories;
+    private List<PullRequest> pullRequests;
     private Context context;
     private RecyclerViewListener listener;
 
-    public RepositoryAdapter(Context context, List<Repository> repositories){
+    public PullRequestAdapter(Context context, List<PullRequest> pullRequests) {
         this.context = context;
-        this.repositories = repositories;
+        this.pullRequests = pullRequests;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public RepositoryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.item_repository, parent, false);
-        RepositoryHolder repositoryHolder = new RepositoryHolder(view,listener);
-        return repositoryHolder;
+    public PullRequestHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = layoutInflater.inflate(R.layout.item_pull_request, parent, false);
+        PullRequestHolder pullRequestHolder = new PullRequestHolder(view,listener);
+        return pullRequestHolder;
     }
 
     @Override
-    public void onBindViewHolder(final RepositoryHolder holder, int position) {
-        holder.nameTextView.setText(repositories.get(position).getName());
-        holder.descriptionTextView.setText(repositories.get(position).getDescription());
-        holder.forksTextView.setText(String.valueOf(repositories.get(position).getForksNumber()));
-        holder.starsTextView.setText(String.valueOf(repositories.get(position).getStarsNumber()));
-        holder.ownerNameTextView.setText(repositories.get(position).getOwner().getName());
-        holder.ownerFullNameTextView.setText(repositories.get(position).getFullName());
+    public void onBindViewHolder(final PullRequestHolder holder, int position) {
+        holder.titleTextView.setText(pullRequests.get(position).getTitle());
+        holder.descriptionTextView.setText(pullRequests.get(position).getBody());
+        holder.userNameTextView.setText(pullRequests.get(position).getUser().getName());
+        holder.dateTextView.setText(pullRequests.get(position).getDate());
         Picasso.with(context)
-                .load(repositories.get(position).getOwner().getAvatarUrl())
+                .load(pullRequests.get(position).getUser().getAvatar())
                 .placeholder(R.drawable.ic_account_circle_black_48dp)
                 .into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        Bitmap bitmapScaled = Bitmap.createScaledBitmap(bitmap, 160, 160, false);
+                        Bitmap bitmapScaled = Bitmap.createScaledBitmap(bitmap, 120, 120, false);
                         holder.avatarCircleImageView.setImageBitmap(bitmapScaled);
                     }
 
@@ -71,13 +72,9 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryHolder> {
                 });
     }
 
+
     @Override
     public int getItemCount() {
-        return repositories.size();
+        return pullRequests.size();
     }
-
-    public void setOnClickListener(RecyclerViewListener listener){
-        this.listener = listener;
-    }
-
 }

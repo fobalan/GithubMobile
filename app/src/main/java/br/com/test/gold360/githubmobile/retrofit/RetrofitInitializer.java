@@ -1,5 +1,6 @@
 package br.com.test.gold360.githubmobile.retrofit;
 
+import br.com.test.gold360.githubmobile.services.PullRequestsService;
 import br.com.test.gold360.githubmobile.services.RepositoriesService;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -20,5 +21,9 @@ public class RetrofitInitializer {
 
     public RepositoriesService getRepositoriesService() {
         return retrofit.create(RepositoriesService.class);
+    }
+
+    public PullRequestsService getPullRequestsService(){
+        return retrofit.create(PullRequestsService.class);
     }
 }

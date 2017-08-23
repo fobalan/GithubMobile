@@ -8,9 +8,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PullReqUser {
+
     @JsonProperty("login")
     private String name;
 
     @JsonProperty("avatar_url")
-    private String avatar;
+    private String avatarUrl;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAvatar() {
+        return avatarUrl;
+    }
 }

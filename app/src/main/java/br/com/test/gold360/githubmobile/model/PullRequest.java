@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PullRequest {
+
     @JsonProperty("title")
     private String title;
 
@@ -19,4 +20,27 @@ public class PullRequest {
 
     @JsonProperty("body")
     private String body;
+
+    @JsonProperty("html_url")
+    private String url;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public PullReqUser getUser() {
+        return user;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }
