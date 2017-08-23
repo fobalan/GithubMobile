@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -33,11 +35,16 @@ public class RepositoriesActivity extends AppCompatActivity implements RecyclerV
     private RepositoryAdapter adapter;
     private static final int pageInitial = 1;
     private int nextPage = pageInitial;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.repositories_activity);
+
+        toolbar = (Toolbar) findViewById(R.id.repositoryToolbar);
+        toolbar.setTitle("Lista de Repositórios");
+        setSupportActionBar(toolbar);
 
         repositories = new ArrayList<>();
         loadRepositories(pageInitial);
@@ -101,4 +108,5 @@ public class RepositoriesActivity extends AppCompatActivity implements RecyclerV
         intent.putExtra("repository", repositories.get(position));
         startActivity(intent);
     }
+
 }

@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,6 +35,11 @@ public class PullRequestsActivity extends AppCompatActivity implements RecyclerV
     private LinearLayoutManager linearLayourManager;
     private PullRequestAdapter adapter;
     private Repository repository;
+    private Toolbar toolbar;
+    private TextView openPullTextView;
+    private TextView closePullTextView;
+    private int numberOpen;
+    private int numberClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,17 @@ public class PullRequestsActivity extends AppCompatActivity implements RecyclerV
 
         Intent intent = getIntent();
         repository = (Repository) intent.getSerializableExtra("repository");
+
+        openPullTextView = (TextView) findViewById(R.id.openPullTextView);
+        closePullTextView = (TextView) findViewById(R.id.closePullTextView);
+        toolbar = (Toolbar) findViewById(R.id.pullRequestToolbar);
+        toolbar.setTitle(repository.getName());
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         pullRequests = new ArrayList<>();
         loadPullRequests();
@@ -83,7 +102,14 @@ public class PullRequestsActivity extends AppCompatActivity implements RecyclerV
         for(PullRequest pullRequest : newPullRequests){
             pullRequests.add(pullRequest);
             adapter.notifyItemInserted(pullRequests.size() - 1);
+            if(pullRequest.getState().equals("open")){
+                numberOpen++;
+            } else {
+                numberClose++;
+            }
         }
+        openPullTextView.setText(numberOpen + " opened ");
+        closePullTextView.setText("/ " + numberClose + " closed");
     }
 
     @Override
@@ -91,6 +117,16 @@ public class PullRequestsActivity extends AppCompatActivity implements RecyclerV
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(pullRequests.get(position).getUrl()));
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
 

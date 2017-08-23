@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.view.ViewGroup;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import br.com.test.gold360.githubmobile.PullRequestsActivity;
@@ -40,7 +44,7 @@ public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestHolder> 
     @Override
     public PullRequestHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.item_pull_request, parent, false);
-        PullRequestHolder pullRequestHolder = new PullRequestHolder(view,listener);
+        PullRequestHolder pullRequestHolder = new PullRequestHolder(view, listener);
         return pullRequestHolder;
     }
 
@@ -49,10 +53,18 @@ public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestHolder> 
         holder.titleTextView.setText(pullRequests.get(position).getTitle());
         holder.descriptionTextView.setText(pullRequests.get(position).getBody());
         holder.userNameTextView.setText(pullRequests.get(position).getUser().getName());
-        holder.dateTextView.setText(pullRequests.get(position).getDate());
+
+        String data = null;
+        try {
+            data = formatDate(pullRequests.get(position).getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        holder.dateTextView.setText(data);
+
         Picasso.with(context)
                 .load(pullRequests.get(position).getUser().getAvatar())
-                .placeholder(R.drawable.ic_account_circle_black_48dp)
+                .placeholder(R.drawable.github_circle)
                 .into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -72,13 +84,22 @@ public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestHolder> 
                 });
     }
 
+    private String formatDate(String string) throws ParseException {
+        SimpleDateFormat formaterOld, formaterNew;
+        formaterOld = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        Date date = formaterOld.parse(string);
+        formaterNew = new SimpleDateFormat("dd-MMM-yyyy");
+
+        return formaterNew.format(date);
+    }
+
 
     @Override
     public int getItemCount() {
         return pullRequests.size();
     }
 
-    public void setOnClickListener(RecyclerViewListener listener){
+    public void setOnClickListener(RecyclerViewListener listener) {
         this.listener = listener;
     }
 }

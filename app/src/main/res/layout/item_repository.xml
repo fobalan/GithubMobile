@@ -11,7 +11,8 @@
     android:elevation="2dp"
     android:outlineProvider="bounds"
     android:paddingBottom="16dp"
-    android:paddingLeft="8dp">
+    android:paddingLeft="8dp"
+    >
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/ownerConstraint"
@@ -47,7 +48,7 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="8dp"
         android:text="username"
-        android:textColor="#2222FF"
+        android:textColor="@color/primary"
         android:textAlignment="center"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/ownerConstraint"
@@ -76,8 +77,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="16dp"
         android:text="Repositorio"
+        android:textColor="@color/primary"
         android:textSize="20sp"
-        android:textColor="#2222FF"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -105,9 +106,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="0dp"
+        android:src="@drawable/git_fork"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ownerFullNameTextView"
-        app:srcCompat="@drawable/git_fork" />
+        app:layout_constraintTop_toBottomOf="@+id/ownerFullNameTextView" />
 
     <TextView
         android:id="@+id/forksTextView"
@@ -116,7 +117,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="0dp"
         android:text="forks"
-        android:textColor="#E49A36"
+        android:textColor="@color/accent"
         app:layout_constraintLeft_toRightOf="@+id/forksImageView"
         app:layout_constraintTop_toBottomOf="@+id/ownerFullNameTextView" />
 
@@ -126,18 +127,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="0dp"
+        android:src="@drawable/star"
         app:layout_constraintLeft_toRightOf="@+id/forksTextView"
-        app:layout_constraintTop_toBottomOf="@+id/ownerFullNameTextView"
-        app:srcCompat="@android:drawable/star_off" />
+        app:layout_constraintTop_toBottomOf="@+id/ownerFullNameTextView" />
 
     <TextView
         android:id="@+id/starsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="0dp"
-        android:text="TextView"
-        android:textColor="#E49A36"
+        android:text="stars"
+        android:textColor="@color/accent"
         app:layout_constraintLeft_toRightOf="@+id/starsImageView"
         app:layout_constraintTop_toBottomOf="@+id/ownerFullNameTextView" />
 

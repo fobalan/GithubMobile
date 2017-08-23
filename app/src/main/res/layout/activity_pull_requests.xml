@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.test.gold360.githubmobile.RepositoriesActivity"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context="br.com.test.gold360.githubmobile.PullRequestsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewPullRequest"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.v7.widget.RecyclerView>
 
-</FrameLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/pullRequestToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/ToolBarStyle"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+
+    <include
+        android:id="@+id/inc_toolbar_bottom"
+        layout="@layout/toolbar_bottom" />
+    </android.support.design.widget.AppBarLayout>
+
+</android.support.design.widget.CoordinatorLayout>

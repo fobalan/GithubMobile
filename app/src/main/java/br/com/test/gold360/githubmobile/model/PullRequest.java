@@ -24,6 +24,9 @@ public class PullRequest {
     @JsonProperty("html_url")
     private String url;
 
+    @JsonProperty("state")
+    private String state;
+
     public String getTitle() {
         return title;
     }
@@ -42,5 +45,9 @@ public class PullRequest {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getState() {
+        return state;
     }
 }

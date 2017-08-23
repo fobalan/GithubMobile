@@ -51,7 +51,7 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryHolder> {
         holder.ownerFullNameTextView.setText(repositories.get(position).getFullName());
         Picasso.with(context)
                 .load(repositories.get(position).getOwner().getAvatarUrl())
-                .placeholder(R.drawable.ic_account_circle_black_48dp)
+                .placeholder(R.drawable.github_circle)
                 .into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
