@@ -77,4 +77,8 @@ public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestHolder> 
     public int getItemCount() {
         return pullRequests.size();
     }
+
+    public void setOnClickListener(RecyclerViewListener listener){
+        this.listener = listener;
+    }
 }

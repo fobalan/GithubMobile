@@ -2,6 +2,7 @@ package br.com.test.gold360.githubmobile;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +10,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.test.gold360.githubmobile.adapters.PullRequestAdapter;
+import br.com.test.gold360.githubmobile.listener.RecyclerViewListener;
 import br.com.test.gold360.githubmobile.model.PullRequest;
 import br.com.test.gold360.githubmobile.model.Repository;
 import br.com.test.gold360.githubmobile.retrofit.RetrofitInitializer;
@@ -23,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class PullRequestsActivity extends AppCompatActivity {
+public class PullRequestsActivity extends AppCompatActivity implements RecyclerViewListener {
     private RecyclerView recyclerView;
     private List<PullRequest> pullRequests;
     private LinearLayoutManager linearLayourManager;
@@ -50,6 +53,7 @@ public class PullRequestsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayourManager);
 
         adapter = new PullRequestAdapter(this, pullRequests);
+        adapter.setOnClickListener(this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -80,6 +84,13 @@ public class PullRequestsActivity extends AppCompatActivity {
             pullRequests.add(pullRequest);
             adapter.notifyItemInserted(pullRequests.size() - 1);
         }
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(pullRequests.get(position).getUrl()));
+        startActivity(intent);
     }
 }
 
