@@ -25,11 +25,15 @@ android {
     productFlavors {
 
         freeFlavor{
-
+            applicationId "br.com.test.gold360.githubmobilefree"
+            versionCode 1
+            versionName "1.0.0"
         }
 
         paidFlavor{
-
+            applicationId "br.com.test.gold360.githubmobilepaid"
+            versionCode 1
+            versionName "1.0.0"
         }
     }
 
