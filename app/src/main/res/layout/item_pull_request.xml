@@ -76,6 +76,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="Data"
+        android:textColor="@color/accent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/avatarPullRequestCircleImageView"
         app:layout_constraintRight_toRightOf="parent"

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GithubMobile.iml" filepath="$PROJECT_DIR$/GithubMobile.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/flavio.oliveira.iml" filepath="$PROJECT_DIR$/flavio.oliveira.iml" />
     </modules>
   </component>
 </project>
